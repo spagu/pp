@@ -22,13 +22,14 @@ go get github.com/spagu/pp
 ```
 
 ## Configuration
-Create file .pushpanel in your home directory with a Token from Panel
+Create file `.pushpanel` in your home directory with a Token from Panel
 
 ## Usage
 Commands are controlled via server.
 
 ### Command-Line 
 
+```
 pp project list
 pp project create projectname repotype projecttype --initialversion=
 pp project release projectname
@@ -37,6 +38,7 @@ pp project unpublish projectname
 pp project archive projectname
 pp website create domainname
 pp website deploy development to production domainname
+```
 
 ### Project management
 Add file called `pushpanel.yaml` inside your repository with a controlled content:
