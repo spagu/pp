@@ -1,7 +1,7 @@
-<p align="center"><img src="images/pushpanel.png" alt="pushpanel"></p>
+<p align="center"><img src="images/pushpanel-logo.png" alt="pushpanel"></p>
 
 # pp - PushPanel CLI
-<p align="center">
+
 [![GoDoc](https://godoc.org/github.com/spagu/pp?status.svg)](https://godoc.org/github.com/spagu/pp)&nbsp; 
 [![Build Status](https://travis-ci.org/spagu/pp.svg?branch=master)](https://travis-ci.org/spagu/pp)&nbsp;
 [![Go Report Card](https://goreportcard.com/badge/github.com/spagu/pp)](https://goreportcard.com/report/github.com/spagu/pp)&nbsp;
@@ -9,7 +9,7 @@
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/3267/badge)](https://bestpractices.coreinfrastructure.org/projects/3267)&nbsp;
 <a href="https://github.com/spagu/pp/releases"><img src="https://img.shields.io/github/downloads/spagu/pp/total.svg" alt="Downloads"></a>&nbsp;
 <a href="https://github.com/spagu/pp/releases"><img src="https://img.shields.io/github/release/spagu/pp.svg?label=Release" alt="Release"></a>
-</p>
+
 
 `pp` is a command line interface for [PushPanel.io](https://pushpanel.io) services. 
 
