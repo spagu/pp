@@ -7,8 +7,9 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/spagu/pp)](https://goreportcard.com/report/github.com/spagu/pp)&nbsp;
 [![Coverage Status](https://coveralls.io/repos/github/spagu/pp/badge.svg?branch=master)](https://coveralls.io/github/spagu/pp?branch=master)
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/3267/badge)](https://bestpractices.coreinfrastructure.org/projects/3267)&nbsp;
-<a href="https://github.com/spagu/pp/releases"><img src="https://img.shields.io/github/downloads/spagu/pp/total.svg" alt="Downloads"></a>&nbsp;
-<a href="https://github.com/spagu/pp/releases"><img src="https://img.shields.io/github/release/spagu/pp.svg?label=Release" alt="Release"></a>
+[![Downloads](https://img.shields.io/github/downloads/spagu/pp/total.svg)](https://github.com/spagu/pp/releases) 
+
+[![Downloads](https://img.shields.io/github/release/spagu/pp.svg?label=Release)](https://github.com/spagu/pp/releases) 
 
 
 `pp` is a command line interface for [PushPanel.io](https://pushpanel.io) services. 
