@@ -8,7 +8,7 @@
 <a href="https://github.com/spagu/pp/releases"><img src="https://img.shields.io/github/release/spagu/pp.svg?label=Release" alt="Release"></a>
 
 
-`pp` is a command line interface for [PushPanel.io](https://pushpanel.io services. 
+`pp` is a command line interface for [PushPanel.io](https://pushpanel.io) services. 
 
 ## Requirments
 1. Local Linux/FreeBSD shell access
