@@ -10,11 +10,11 @@
 
 `pp` is a command line interface for [PushPanel.io](https://pushpanel.io) services. 
 
-## Requirments
-1. Local Linux/FreeBSD shell access
-2. Account on PushPanel.io
-3. Firewall able to comuniacte with dash.pushpanel.io on port 443
-4. GO language installed 
+## Requirements
+1. Local Linux/BSD shell access
+2. Account on [PushPanel.io](https://pushpanel.io)
+3. Unblock Firewall on port 443 so your console is able to communicate with dash.pushpanel.io:443
+4. [GO](https://golang.org/) language installed 
 
 ## Install
 ```sh
