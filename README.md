@@ -4,6 +4,8 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/spagu/pp)](https://goreportcard.com/report/github.com/spagu/pp)&nbsp;
 [![Coverage Status](https://coveralls.io/repos/github/spagu/pp/badge.svg?branch=master)](https://coveralls.io/github/spagu/pp?branch=master)
 
+`pp` is a command line interface for PushPanel services. 
+
 ## Requirments
 1. Local Linux/FreeBSD shell access
 2. Account on PushPanel.io
@@ -34,7 +36,8 @@ pp website deploy development to production domainname
 
 ### Project management
 Add file called `pushpanel.yaml` inside your repository with a controlled content:
-```
+
+```yaml
 projects:
 
     name: supername
@@ -48,10 +51,10 @@ website:
         domainname:dev.domanname.co.uk
 ```
 
-#Author
+## Author
 `pp` was developed by [PushPanel](https://pushpanel.io).
 
-#License
+## License
 `pp` is available under the [BSD](./LICENSE) license.
 
 
