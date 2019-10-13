@@ -1,49 +1,48 @@
-SHELL = /bin/bash
+SHELL := /usr/local/bin/bash
 
-GIT_VERSION ?= $(shell git describe --always --tags --always --dirty)
+# The name of the executable (default is current directory name)
+TARGET := $(shell echo $${PWD\#\#*/})
+.DEFAULT_GOAL: $(TARGET)
 
-GOOS ?= $(shell go env GOOS)
-GOARCH = amd64
-PLATFORMS := linux-$(GOARCH) darwin-$(GOARCH)
+# These will be provided to the target
+VERSION := 1.0.0
+BUILD := `git rev-parse HEAD`
 
-BUILD_DIR ?= ./build
-ORG := github.com/spagu
-PROJECT := pp
-REPOPATH ?= $(ORG)/$(PROJECT)
-BUILD_PACKAGE = $(REPOPATH)
+# Use linker flags to provide version/build settings to the target
+LDFLAGS=-ldflags "-X=main.Version=$(VERSION) -X=main.Build=$(BUILD)"
 
-GO_BUILD_TAGS ?= ""
-GO_LDFLAGS := "-X main.commit=$(GIT_VERSION)"
-GO_FILES := $(shell go list  -f '{{join .Deps "\n"}}' $(BUILD_PACKAGE) | grep $(ORG) | xargs go list -f '{{ range $$file := .GoFiles }} {{$$.Dir}}/{{$$file}}{{"\n"}}{{end}}')
+# go source files, ignore vendor directory
+SRC = $(shell find . -type f -name '*.go' -not -path "./vendor/*")
 
-export GO111MODULE=on
+.PHONY: all build clean install uninstall fmt simplify check run
 
-install:
-	go install -tags $(GO_BUILD_TAGS) -ldflags $(GO_LDFLAGS)
+all: check install
 
-$(BUILD_DIR)/$(PROJECT): $(BUILD_DIR)/$(PROJECT)-$(GOOS)-$(GOARCH)
-	cp $(BUILD_DIR)/$(PROJECT)-$(GOOS)-$(GOARCH) $@
+$(TARGET): $(SRC)
+	@go build $(LDFLAGS) -o $(TARGET)
 
-$(BUILD_DIR)/$(PROJECT)-%-$(GOARCH): $(GO_FILES) $(BUILD_DIR)
-	GOOS=$* GOARCH=$(GOARCH) go build -tags $(GO_BUILD_TAGS) -ldflags $(GO_LDFLAGS) -o $@ $(BUILD_PACKAGE)
-
-%.sha256: %
-	shasum -a 256 $< &> $@
-
-$(BUILD_DIR):
-	mkdir -p $(BUILD_DIR)
-
-.PRECIOUS: $(foreach platform, $(PLATFORMS), $(BUILD_DIR)/$(PROJECT)-$(platform))
-
-cross: $(foreach platform, $(PLATFORMS), $(BUILD_DIR)/$(PROJECT)-$(platform).sha256)
-
-release: cross
-	ls -hl $(BUILD_DIR)
-
-test: $(BUILD_DIR)/$(PROJECT)
-	go test -v $(REPOPATH)
+build: $(TARGET)
+	@true
 
 clean:
-	rm -rf $(BUILD_DIR)
+	@rm -f $(TARGET)
 
-.PHONY: cross release install test clean
+install:
+	@go install $(LDFLAGS)
+
+uninstall: clean
+	@rm -f $$(which ${TARGET})
+
+fmt:
+	@gofmt -l -w $(SRC)
+
+simplify:
+	@gofmt -s -l -w $(SRC)
+
+check:
+	@test -z $(shell gofmt -l main.go | tee /dev/stderr) || echo "[WARN] Fix formatting issues with 'make fmt'"
+	@for d in $$(go list ./... | grep -v /vendor/); do golint $${d}; done
+	@go tool vet ${SRC}
+
+run: install
+	@$(TARGET)
